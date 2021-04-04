@@ -25,8 +25,6 @@ export default function Country() {
     }
   }, [pid]);
 
-  console.log(data);
-
   const isLast = (index, data) => index === data?.length - 1;
 
   return (
