@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 
 import Moon from "./icons/moon";
 
@@ -24,7 +25,11 @@ export default function Layout({ pageTitle, children }) {
       <section className="min-h-screen bg-primary text-sm sm:text-base pb-1">
         <div className="bg-elements py-4 shadow-md ">
           <div className="flex justify-between w-11/12 mx-auto">
-            <p className="text-secondary">Where in the world?</p>
+            <Link href="/">
+              <p className="text-secondary cursor-pointer">
+                Where in the world?
+              </p>
+            </Link>
             <p
               className="text-secondary flex items-center cursor-pointer"
               onClick={handleThemeChange}
