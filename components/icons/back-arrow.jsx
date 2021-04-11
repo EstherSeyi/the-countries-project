@@ -2,7 +2,7 @@ export default function BackArrow() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      fill="#ffffff"
+      fill="var(--color-text)"
       viewBox="0 0 24 24"
       stroke="currentColor"
       className="w-8"
