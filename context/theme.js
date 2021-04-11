@@ -43,7 +43,7 @@ function ThemeProvider({ initialTheme, children }) {
   );
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme, yes: "yes" }}>
+    <ThemeContext.Provider value={{ theme, setTheme }}>
       {children}
     </ThemeContext.Provider>
   );
