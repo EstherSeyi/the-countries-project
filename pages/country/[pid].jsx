@@ -11,7 +11,7 @@ export default function Country() {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    const getX = async () => {
+    const getCountry = async () => {
       try {
         const { data } = await http().get(`/name/${pid}?fullText=true`);
 
@@ -21,7 +21,7 @@ export default function Country() {
       }
     };
     if (pid) {
-      getX();
+      getCountry();
     }
   }, [pid]);
 
