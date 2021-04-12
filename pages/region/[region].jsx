@@ -12,7 +12,7 @@ export default function CountryByRegion() {
   const router = useRouter();
   const { region } = router.query;
 
-  const { data, isLoading } = useAppQuery(`countries_${region ?? ""}`, {
+  const { data, isLoading, error } = useAppQuery(`countries_${region ?? ""}`, {
     url: `/region/${region ?? ""}`,
   });
 
@@ -31,7 +31,7 @@ export default function CountryByRegion() {
       </div>
       {isLoading ? (
         <Loading />
-      ) : (
+      ) : !isLoading && !error ? (
         <div
           style={{
             gridTemplateColumns: `repeat(auto-fit, minmax(225px,${
@@ -78,6 +78,10 @@ export default function CountryByRegion() {
               </div>
             ))}
         </div>
+      ) : (
+        <p className="text-secondary text-center">
+          An Error Occurred - {error}
+        </p>
       )}
     </Layout>
   );

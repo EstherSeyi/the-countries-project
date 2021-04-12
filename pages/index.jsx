@@ -17,7 +17,7 @@ export default function Countries() {
   const router = useRouter();
   const [countryName, setCountryName] = useState("");
   const [nameQuery, setNameQuery] = useState("all");
-  const { data, isLoading } = useAppQuery(`countries_${nameQuery}`, {
+  const { data, isLoading, error } = useAppQuery(`countries_${nameQuery}`, {
     url: `/${nameQuery}`,
   });
 
@@ -73,7 +73,7 @@ export default function Countries() {
 
       {isLoading ? (
         <Loading />
-      ) : (
+      ) : !isLoading && !error ? (
         <div
           style={{
             gridTemplateColumns: `repeat(auto-fit, minmax(225px,${
@@ -120,6 +120,10 @@ export default function Countries() {
               </div>
             ))}
         </div>
+      ) : (
+        <p className="text-secondary">
+          An error Occured - {error ? error : "Please Try Again"}
+        </p>
       )}
     </Layout>
   );

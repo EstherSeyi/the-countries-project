@@ -12,6 +12,10 @@ export default function Country() {
   const { pid } = router.query;
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState({
+    data: null,
+    isError: false,
+  });
 
   useEffect(() => {
     const getCountry = async () => {
@@ -23,7 +27,10 @@ export default function Country() {
         setIsLoading(false);
       } catch (error) {
         setIsLoading(false);
-        console.log(error);
+        setError({
+          isError: true,
+          data: error,
+        });
       }
     };
     if (pid) {
@@ -46,7 +53,7 @@ export default function Country() {
 
         {isLoading ? (
           <Loading />
-        ) : (
+        ) : !error.isError && !isLoading ? (
           <>
             {data[0] ? (
               <div className="text-secondary flex flex-col sm:flex-row justify-between">
@@ -161,6 +168,12 @@ export default function Country() {
               </div>
             ) : null}
           </>
+        ) : (
+          <p className="text-secondary text-center">
+            {error.response
+              ? error.response.data.message
+              : "An Error Occured, Please try Again"}
+          </p>
         )}
       </div>
     </Layout>
